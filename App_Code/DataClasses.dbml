@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TestASP.NET" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=BANGCONG\SQLEXPRESS;Initial Catalog=TestASP.NET;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TestASP_NETConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Author_CategoryTBx" Member="Author_CategoryTBxes">
+    <Type Name="Author_CategoryTBx">
+      <Column Name="AuthorID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="AuthorTBx_Author_CategoryTBx" Member="AuthorTBx" ThisKey="AuthorID" OtherKey="ID" Type="AuthorTBx" IsForeignKey="true" />
+      <Association Name="CategoryTBx_Author_CategoryTBx" Member="CategoryTBx" ThisKey="CategoryID" OtherKey="ID" Type="CategoryTBx" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AuthorTBx" Member="AuthorTBxes">
+    <Type Name="AuthorTBx">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AuthorTBx_Author_CategoryTBx" Member="Author_CategoryTBxes" ThisKey="ID" OtherKey="AuthorID" Type="Author_CategoryTBx" />
+      <Association Name="AuthorTBx_BookTBx" Member="BookTBxes" ThisKey="ID" OtherKey="AuthorID" Type="BookTBx" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BookTBx" Member="BookTBxes">
+    <Type Name="BookTBx">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShortDesc" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AuthorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BookTBx_ImageTBx" Member="ImageTBxes" ThisKey="ID" OtherKey="BookID" Type="ImageTBx" />
+      <Association Name="AuthorTBx_BookTBx" Member="AuthorTBx" ThisKey="AuthorID" OtherKey="ID" Type="AuthorTBx" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CategoryTBx" Member="CategoryTBxes">
+    <Type Name="CategoryTBx">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CategoryTBx_Author_CategoryTBx" Member="Author_CategoryTBxes" ThisKey="ID" OtherKey="CategoryID" Type="Author_CategoryTBx" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ImageTBx" Member="ImageTBxes">
+    <Type Name="ImageTBx">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BookID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BookTBx_ImageTBx" Member="BookTBx" ThisKey="BookID" OtherKey="ID" Type="BookTBx" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTBx" Member="UserTBxes">
+    <Type Name="UserTBx">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
